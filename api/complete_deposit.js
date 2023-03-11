@@ -2,16 +2,16 @@ const express = require("express");
 const Router = express.Router();
 const User = require("../model/user");
 const verifyToken = require("../token/verifyToken");
-const cloudinary = require("../file_handler/cloudinary");
-const upload = require("../file_handler/multer");
-const fs = require("fs");
+// const cloudinary = require("../file_handler/cloudinary");
+// const upload = require("../file_handler/multer");
+// const fs = require("fs");
 const { create_mail_options, transporter } = require("../mailer/deposit_email");
 const validate_user = require("../validation/validate_complete_deposit");
 const Deposit_request = require("../model/deposit_request");
 
-Router.post("/", upload.any("receipt"), verifyToken, async (req, res) => {
-  console.log(req.body);
-  console.log(req.files);
+Router.post("/", verifyToken, async (req, res) => {
+  // console.log(req.body);
+
   const request_isvalid = validate_user(req.body);
   if (request_isvalid != true)
     return res.status(400).json({ error: true, errMessage: request_isvalid });
@@ -35,25 +35,8 @@ Router.post("/", upload.any("receipt"), verifyToken, async (req, res) => {
           "deposit not found,before you submit a receipt you need to first make a deposit ",
       });
 
-    const uploader = async (path) => await cloudinary.uploads(path, "receipt");
-    let receipt_url;
-    const files = req.files;
-    for (const file of files) {
-      const { path } = file;
-      const newPath = await uploader(path);
-      receipt_url = newPath;
-      fs.unlinkSync(path);
-    }
-    console.log(receipt_url);
-    if (receipt_url.error)
-      return res.status(400).json({
-        error: true,
-        errMessage:
-          "Something went wrong in the server while trying to upload your receipt, please make sure receipt is an image and try again",
-      });
-
     const result = deposit_request_result.set({
-      proof: receipt_url.url,
+      transaction_hash: req.body.transaction_hash,
     });
     await result.save();
 
@@ -70,12 +53,15 @@ Router.post("/", upload.any("receipt"), verifyToken, async (req, res) => {
         //   error: true,
         //   errMessage: `Encounterd an error while trying to send an email to you: ${err.message}, try again`,
         // });
-      }
+      },
     );
 
     res
       .status(200)
-      .json({ error: false, message: "successfully uploaded receipt" });
+      .json({
+        error: false,
+        message: "successfully transaction hash successfully.",
+      });
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: true, errMessage: error.message });

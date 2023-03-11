@@ -34,10 +34,16 @@ Router.post("/", verifyToken, async (req, res) => {
         parseInt(user.active_investment) + parseInt(req.body.investment_amount),
       final_balance: user.final_balance - parseInt(req.body.investment_amount),
     });
-    await user.save();
-    // console.log(user);
-    await create_investment(req);
 
+    // console.log(user);
+    const create_investment_result = await create_investment(req);
+    if (create_investment_result.error)
+      return (
+        res.status(400).
+        json({ error: true, errMessage: create_investment_result.errMessage })
+      );
+
+    await user.save();
     transporter.sendMail(
       create_mail_options({
         first_name: user.first_name,
@@ -51,7 +57,7 @@ Router.post("/", verifyToken, async (req, res) => {
         //   error: true,
         //   errMessage: `Encounterd an error while trying to send an email to you: ${err.message}, try again`,
         // });
-      }
+      },
     );
 
     res.status(200).json({

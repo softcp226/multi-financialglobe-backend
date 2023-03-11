@@ -2,13 +2,21 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 require("dotenv").config();
+var cors = require("cors");
+
 app.use("/", express.static("html"));
+app.use(cors());
 
 app.use("/admin", express.static("admin"));
 const admin_login = require("./admin_api/login");
 app.use("/api/admin/login", admin_login);
 const admin_fetchuser = require("./admin_api/fetch_user");
 app.use("/api/admin/fetch_users", admin_fetchuser);
+
+const update_user = require("./api/update-user");
+app.use("/api/user/update", update_user);
+// /api/user/fetch
+
 const admin_deleteuser = require("./admin_api/delete_user");
 app.use("/api/admin/users/delete_user", admin_deleteuser);
 const admin_fetch_deposit_request = require("./admin_api/fetch_deposit_request");
@@ -56,5 +64,5 @@ const forgotten_password = require("./api/forgotten-password");
 app.use("/api/password/forgotten", forgotten_password);
 const reset_password = require("./api/reset-password");
 app.use("/api/user/password/reset", reset_password);
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`running on port ${port}`));

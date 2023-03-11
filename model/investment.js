@@ -21,14 +21,18 @@ const investment_schema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  completion_time: {
+    type: String,
+    required: true,
+  },
   investment_plan: {
     type: String,
     required: true,
   },
-  return_time: {
-    type: String,
-    required: true,
-  },
+  // return_time: {
+  //   type: String,
+  //   required: true,
+  // },
 
   profit: {
     type: Number,

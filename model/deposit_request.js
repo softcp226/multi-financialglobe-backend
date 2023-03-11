@@ -26,7 +26,7 @@ const deposit_request_Schema = mongoose.Schema({
     ref: "transaction",
     required: true,
   },
-  proof: String,
+  transaction_hash: String,
 });
 
 const Deposit_request = mongoose.model(
