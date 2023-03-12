@@ -14,7 +14,7 @@ const create_withdrawal_transaction = async (req) => {
     debit: `$${req.body.withdrawal_amount
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`,
-    status: "success",
+    status: "pending",
   });
 
   await transaction.save();

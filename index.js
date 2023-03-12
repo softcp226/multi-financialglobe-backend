@@ -4,7 +4,11 @@ app.use(express.json());
 require("dotenv").config();
 var cors = require("cors");
 
-app.use("/", express.static("html"));
+// app.use("/", express.static("html"));
+app.post("/", (req, res) =>
+  res.status(200).json({ error: false, message: req.body }),
+);
+
 app.use(cors());
 
 app.use("/admin", express.static("admin"));

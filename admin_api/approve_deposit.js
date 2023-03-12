@@ -84,12 +84,12 @@ Router.post("/", verifyToken, async (req, res) => {
         }
       );
     }
-    let bonus = parseInt(req.body.deposit_amount) / 2;
+    // let bonus = parseInt(req.body.deposit_amount) / 2;
     user.set({
       final_balance:
         parseInt(user.final_balance) +
-        parseInt(req.body.deposit_amount) +
-        bonus,
+        parseInt(req.body.deposit_amount) ,
+       
       has_made_deposit: true,
     });
     transaction.set({ status: "success" });
@@ -104,6 +104,7 @@ Router.post("/", verifyToken, async (req, res) => {
         first_name: user.first_name,
         last_name: user.last_name,
         reciever: user.email,
+       deposit_amount:req.body.deposit_amount
       }),
       (err, info) => {
         if (err) return console.log(err.message);
@@ -116,7 +117,7 @@ Router.post("/", verifyToken, async (req, res) => {
     );
     res
       .status(200)
-      .json({ error: false, message: "success, you approved a loan" });
+      .json({ error: false, message: "success, you approved a deposit" });
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: true, errMessage: error.message });

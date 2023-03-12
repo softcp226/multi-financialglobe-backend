@@ -12,6 +12,7 @@ const withdrawal_request_Schema = mongoose.Schema({
     type: String,
     required: true,
   },
+  transaction_id: String,
 
   withdrawal_amount: {
     type: String,
@@ -29,6 +30,6 @@ const withdrawal_request_Schema = mongoose.Schema({
 
 const Withdrawal_request = mongoose.model(
   "withdrawal_request",
-  withdrawal_request_Schema
+  withdrawal_request_Schema,
 );
 module.exports = Withdrawal_request;
