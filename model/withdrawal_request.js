@@ -12,7 +12,7 @@ const withdrawal_request_Schema = mongoose.Schema({
     type: String,
     required: true,
   },
-  transaction_id: String,
+  // transaction_id: String,
 
   withdrawal_amount: {
     type: String,
@@ -26,6 +26,7 @@ const withdrawal_request_Schema = mongoose.Schema({
     type: String,
     required: true,
   },
+  transaction_id: mongoose.Schema.Types.ObjectId,
 });
 
 const Withdrawal_request = mongoose.model(

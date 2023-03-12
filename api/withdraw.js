@@ -39,15 +39,18 @@ Router.post("/", verifyToken, async (req, res) => {
     let datetime = `${currentdate.getFullYear()}-${
       currentdate.getMonth() + 1
     }-${currentdate.getDate()} -  ${currentdate.getHours()}: ${currentdate.getMinutes()} : ${currentdate.getSeconds()}`;
+    const transaction_id = create_withdrawal_transaction(req);
 
+    console.log("Transaction Id", (await transaction_id).transaction_id);
     const withdrawal_request = await new Withdrawal_request({
       user: req.body.user,
       transaction_date: datetime,
       withdrawal_amount: req.body.withdrawal_amount,
       withdrawal_method: req.body.withdrawal_method,
       wallet: req.body.wallet,
+      transaction_id: (await transaction_id).transaction_id,
     });
-    create_withdrawal_transaction(req);
+
     await user.save();
     await withdrawal_request.save();
     transporter.sendMail(
@@ -64,7 +67,7 @@ Router.post("/", verifyToken, async (req, res) => {
         //   error: true,
         //   errMessage: `Encounterd an error while trying to send an email to you: ${err.message}, try again`,
         // });
-      }
+      },
     );
 
     res.status(200).json({

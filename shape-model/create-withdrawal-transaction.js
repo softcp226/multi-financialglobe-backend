@@ -1,6 +1,10 @@
 const Transaction = require("../model/transaction");
 
 const create_withdrawal_transaction = async (req) => {
+
+
+try {
+  
   let currentdate = new Date();
   let datetime = `${currentdate.getFullYear()}-${
     currentdate.getMonth() + 1
@@ -18,7 +22,14 @@ const create_withdrawal_transaction = async (req) => {
   });
 
   await transaction.save();
-  return transaction;
+  return {error:false, transaction_id:transaction.id}
+
+
+} catch (error) {
+  return {error:true,errMessage:error.message}
+}
+
+
 };
 
 module.exports = create_withdrawal_transaction;

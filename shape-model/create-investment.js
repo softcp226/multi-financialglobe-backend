@@ -84,27 +84,27 @@ const select_investment_end_time = async (req) => {
     switch (req.body.investment_plan) {
       case "Silver Plan":
         let date = new Date();
-        date.setDate(date.getDate() + 7);
+        date.setDate(date.getDate() + 3);
         let end_date = date.getTime();
-        console.log("expires after 7 days");
+        console.log("expires after 3 days");
         return end_date;
 
         break;
 
       case "Gold Plan":
         let date2 = new Date();
-        date2.setDate(date2.getDate() + 10);
+        date2.setDate(date2.getDate() + 5);
         let end_date2 = date2.getTime();
-        console.log("expires after 10 days");
+        console.log("expires after 5 days");
 
         return end_date2;
         break;
 
       case "VIP Plan":
         let date3 = new Date();
-        date3.setDate(date3.getDate() + 15);
+        date3.setDate(date3.getDate() + 10);
         let end_date3 = date3.getTime();
-        console.log("expires after 15 days");
+        console.log("expires after 10 days");
 
         return end_date3;
 
@@ -118,9 +118,9 @@ const select_investment_end_time = async (req) => {
 
       default:
         let def_date = new Date();
-        def_date.setDate(date.getDate() + 7);
+        def_date.setDate(date.getDate() + 3);
         let def_end_date = date.getTime();
-        console.log("expires after 7 days");
+        console.log("expires after 3 days");
 
         return def_end_date;
         break;
