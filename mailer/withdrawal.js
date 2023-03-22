@@ -113,35 +113,34 @@
 // // // });
 // // };
 
-
-
-
-
-
-
-
-
-
-
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 
+require("dotenv").config();
+let transporter = nodemailer.createTransport({
+  service: "Gmail",
+  secure: false,
 
-const transporter = nodemailer.createTransport(
-  smtpTransport({
-    host: "mail.benefitsgloballtd.com",
-    secureConnection: false,
-    tls: {
-      rejectUnauthorized: false,
-    },
-    port: 465,
-    auth: {
-      user: "support@benefitsgloballtd.com",
-      pass: "benefitsgloballtd1@1",
-    },
-  }),
-);
+  auth: {
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
+  },
+});
 
+// const transporter = nodemailer.createTransport(
+//   smtpTransport({
+//     host: "mail.benefitsgloballtd.com",
+//     secureConnection: false,
+//     tls: {
+//       rejectUnauthorized: false,
+//     },
+//     port: 465,
+//     auth: {
+//       user: "support@benefitsgloballtd.com",
+//       pass: "benefitsgloballtd1@1",
+//     },
+//   }),
+// );
 
 let currentdate = new Date();
 let datetime = `${currentdate.getFullYear()}-${
@@ -150,7 +149,7 @@ let datetime = `${currentdate.getFullYear()}-${
 
 let create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@benefitsgloballtd.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever,
     subject: `Withdrawal Confirmation Notification`,
@@ -179,8 +178,8 @@ let create_mail_options = (userInfo) => {
     background-size: cover;
   ">
     <div class="head-txt">
-      <h1 style="text-align: center; font-size: 16px; color: #825ee4">
-        Benefits Global Limited
+      <h1 style="text-align: center; font-size: 16px; color: rgb(26, 115, 232)">
+        Sterile Energy
       </h1>
       <h3 style="font-size: 15px">WITHDRAWAL REQUEST WAS SUCCESSFULLY INITIATED</h3>
     </div>
@@ -188,7 +187,7 @@ let create_mail_options = (userInfo) => {
     <p class="sm-p">
       Dear ${userInfo.full_name}, you have successfully
       initiated a withdrawal of $${userInfo.amount} from
-      your benefitsgloballtd investment account on <b>${datetime}</b>. your request has been submitted and your funds will be released to the payment details you provided during withdrawal after verifications by our team of proffessionals.
+      your sterileenergy investment account on <b>${datetime}</b>. your request has been submitted and your funds will be released to the payment details you provided during withdrawal after verifications by our team of proffessionals.
     </p>
     <p class="sm-p">
       NB: For more detailed informations, please contact our customer support or
@@ -204,16 +203,16 @@ let create_mail_options = (userInfo) => {
       style="
         font-size: 18px;
         text-align: center;
-        background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
+        background: linear-gradient(87deg, rgb(26, 115, 232) 0, rgb(26, 115, 232) 100%);
         color: #fff;
       "
     >
-     Benefits Global Limited
+     Sterile Energy
     </h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via benefitsgloballtd
+      Disclaimer: this message was automatically generated via sterileenergy
       secured channel,please do not reply to this message. All correspondence
-      should be addressed to benefitsgloballtd.com or your relationship officer
+      should be addressed sterileenergy.uk or your relationship officer
     </p>
   </div>
 </main>
@@ -225,7 +224,7 @@ module.exports = { create_mail_options, transporter };
 // transporter.sendMail(mailOptions, (err, info) => {
 //   if (err)
 //     return res
-//       .status(400)
+//       .status(400)rgb(26, 115, 232)
 //       .json({ error: true, errMessage: `an error occured: ${err.message}` });
 //   // console.log(info)
 //   return res.status(200).json({ error: false, message: "message sent" });

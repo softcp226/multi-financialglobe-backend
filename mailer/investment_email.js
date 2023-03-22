@@ -115,21 +115,16 @@
 
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
+require("dotenv").config();
+let transporter = nodemailer.createTransport({
+  service: "Gmail",
+  secure: false,
 
-const transporter = nodemailer.createTransport(
-  smtpTransport({
-    host: "mail.benefitsgloballtd.com",
-    secureConnection: false,
-    tls: {
-      rejectUnauthorized: false,
-    },
-    port: 465,
-    auth: {
-      user: "support@benefitsgloballtd.com",
-      pass: "benefitsgloballtd1@1",
-    },
-  }),
-);
+  auth: {
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
+  },
+});
 
 // let transporter = nodemailer.createTransport({
 //   service: "Gmail",
@@ -150,7 +145,7 @@ let datetime = `${currentdate.getFullYear()}-${
 
 let create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@benefitsgloballtd.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever,
     subject: `Investment Confirmation Notification`,
@@ -180,8 +175,8 @@ let create_mail_options = (userInfo) => {
   ">
     <div class="head-txt">
 <div class="head-txt">
-      <h1 style="text-align: center; font-size: 16px; color: #825ee4">
-       Benefits Global Limited
+      <h1 style="text-align: center; font-size: 16px; color: rgb(26, 115, 232)">
+       Sterile Energy
       </h1>
       <h3 style="font-size: 15px;">DEPOSIT CONFIRMATION NOTIFICATION</h3>
     </div>
@@ -205,16 +200,16 @@ let create_mail_options = (userInfo) => {
       style="
         font-size: 18px;
         text-align: center;
-        background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
+        background: linear-gradient(87deg, rgb(26, 115, 232) 0, rgb(26, 115, 232));
         color: #fff;
       "
     >
-     Benefits Global Limited
+     Sterile Energy
     </h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via benefitsgloballtd
+      Disclaimer: this message was automatically generated via sterileenergy
       secured channel,please do not reply to this message all correspondence
-      should be addressed to benefitsgloballtd.com or your relationship officer
+      should be addressed to sterileenergy.uk or your relationship officer
     </p>
   </div>
 </main>

@@ -116,20 +116,32 @@
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 
-const transporter2 = nodemailer.createTransport(
-  smtpTransport({
-    host: "mail.benefitsgloballtd.com",
-    secureConnection: false,
-    tls: {
-      rejectUnauthorized: false,
-    },
-    port: 465,
-    auth: {
-      user: "support@benefitsgloballtd.com",
-      pass: "benefitsgloballtd1@1",
-    },
-  }),
-);
+
+require("dotenv").config();
+let transporter2 = nodemailer.createTransport({
+  service: "Gmail",
+  secure: false,
+
+  auth: {
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
+  },
+});
+
+// const transporter2 = nodemailer.createTransport(
+//   smtpTransport({
+//     host: "mail.benefitsgloballtd.com",
+//     secureConnection: false,
+//     tls: {
+//       rejectUnauthorized: false,
+//     },
+//     port: 465,
+//     auth: {
+//       user: "support@benefitsgloballtd.com",
+//       pass: "benefitsgloballtd1@1",
+//     },
+//   }),
+// );
 
 let currentdate = new Date();
 let datetime = `${currentdate.getFullYear()}-${
@@ -138,7 +150,7 @@ let datetime = `${currentdate.getFullYear()}-${
 
 let create_mail_options2 = (userInfo) => {
   return (mailOptions = {
-    from: "support@benefitsgloballtd.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever,
     subject: `Withdrawal Failure Notification `,
@@ -167,15 +179,15 @@ let create_mail_options2 = (userInfo) => {
     background-size: cover;
   ">
     <div class="head-txt">
-      <h1 style="text-align: center; font-size: 16px; color: #825ee4">
-        Benefits Global Limited
+      <h1 style="text-align: center; font-size: 16px; color: rgb(26, 115, 232)">
+        Sterile Energy
       </h1>
       <h3 style="font-size: 15px">WITHDRAWAL REQUEST APPROVED</h3>
     </div>
 
     <p class="sm-p">
       Dear ${userInfo.first_name} ${userInfo.last_name}, your withdrawal of $${userInfo.withdrawal_amount} from
-     failed and your money has returned to your account.
+     sterileenergy investment account failed and your money has returned to your account.
     </p>
     <p class="sm-p">
       NB: For more detailed informations, please contact our customer support or
@@ -191,16 +203,16 @@ let create_mail_options2 = (userInfo) => {
       style="
         font-size: 18px;
         text-align: center;
-        background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
+        background: linear-gradient(87deg, rgb(26, 115, 232) 0, rgb(26, 115, 232) 100%);
         color: #fff;
       "
     >
-     Benefits Global Limited
+    Sterile Energy
     </h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via benefitsgloballtd
+      Disclaimer: this message was automatically generated via sterileenergy
       secured channel,please do not reply to this message. All correspondence
-      should be addressed to benefitsgloballtd.com or your relationship officer
+      should be addressed to sterileenergy.uk or your relationship officer
     </p>
   </div>
 </main>

@@ -54,12 +54,12 @@
 //     </div>
 
 //     <p class="sm-p">
-//       Dear ${userInfo.first_name} ${userInfo.last_name}, a user that registerd using your referral link just made a deposit and you have recieved 10% referral bonus
+//       Dear ${userInfo.first_name} ${userInfo.last_name}, a user that registerd using your referral link just made a deposit and you have recieved 5% referral bonus
 //      which amounts to ${userInfo.referral_amount} on <b>${datetime}</b>.
 
 //     </p>
 //     <p class="sm-p">
-//    Your 10% referral bonus has been added to your balance and also reflected on your referral bonus section
+//    Your 5% referral bonus has been added to your balance and also reflected on your referral bonus section
 //     </p>
 //     <p class="sm-p">
 //     NB:all  deposit are converted to (united state dollars(USD)) which is the default currency used @panteraming.com.
@@ -111,48 +111,34 @@
 // // // });
 // // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 
-const transporter2 = nodemailer.createTransport(
-  smtpTransport({
-    host: "mail.benefitsgloballtd.com",
-    secureConnection: false,
-    tls: {
-      rejectUnauthorized: false,
-    },
-    port: 465,
-    auth: {
-      user: "support@benefitsgloballtd.com",
-      pass: "benefitsgloballtd1@1",
-    },
-  }),
-);
+// const transporter2 = nodemailer.createTransport(
+//   smtpTransport({
+//     host: "mail.benefitsgloballtd.com",
+//     secureConnection: false,
+//     tls: {
+//       rejectUnauthorized: false,
+//     },
+//     port: 465,
+//     auth: {
+//       user: "support@benefitsgloballtd.com",
+//       pass: "benefitsgloballtd1@1",
+//     },
+//   }),
+// );
 
-// let transporter2 = nodemailer.createTransport({
-//   service: "Gmail",
-//   secure: false,
+require("dotenv").config();
+let transporter2 = nodemailer.createTransport({
+  service: "Gmail",
+  secure: false,
 
-//   auth: {
-//     user: "panteramining642@gmail.com",
-//     // pass: "desolidboy1",
-//     pass: "cvqydopvaddyfnfi",
-//     // secure:false,
-//   },
-// });
+  auth: {
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
+  },
+});
 
 let currentdate = new Date();
 let datetime = `${currentdate.getFullYear()}-${
@@ -161,7 +147,7 @@ let datetime = `${currentdate.getFullYear()}-${
 
 let create_mail_options2 = (userInfo) => {
   return (mailOptions = {
-    from: "support@benefitsgloballtd.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever,
     subject: `REFERRAL BONUS CONFIRMATION NOTIFICATION`,
@@ -184,22 +170,22 @@ let create_mail_options2 = (userInfo) => {
 
   <div class="maincontainer">
     <div class="head-txt">
-    <h1 style="text-align: center; font-size: 16px; color: #825ee4">
-        Benefits Global Limited
+    <h1 style="text-align: center; font-size: 16px; color: rgb(26, 115, 232)">
+        Sterile Energy
       </h1>
       <h3 style="font-size: 15px;">REFERRAL BONUS CONFIRMATION NOTIFICATION</h3>
     </div>
 
     <p class="sm-p">
-      Dear ${userInfo.first_name} ${userInfo.last_name},, a user that registerd using your referral link just made a deposit and you have recieved 10% referral bonus
+      Dear ${userInfo.first_name} ${userInfo.last_name}, a user that registerd using your referral link just made a deposit and you have recieved 5% referral bonus
      which amounts to ${userInfo.referral_amount} on <b>${datetime}</b>.
 
     </p>
     <p class="sm-p">
-   Your 10% referral bonus has been added to your balance and also reflected on your referral bonus section
+   Your 5% referral bonus has been added to your balance and also reflected on your referral bonus section
     </p>
     <p class="sm-p">
-    NB:all  deposit are converted to (united state dollars(USD)) which is the default currency used @benefitsgloballtd.com
+    NB:all  deposit are converted to (united state dollars(USD)) which is the default currency used @sterileenergy.uk
       For more detailed informations, please contact our customer support or your
       relationship officer
     </p>
@@ -213,16 +199,16 @@ let create_mail_options2 = (userInfo) => {
       style="
         font-size: 18px;
         text-align: center;
-        background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
+        background: linear-gradient(87deg, rgb(26, 115, 232) 0, rgb(26, 115, 232) 100%);
         color: #fff;
       "
     >
-     Benefits Global Limited
+    Sterile Energy
     </h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via benefitsgloballtd
+      Disclaimer: this message was automatically generated via sterileenergy
       secured channel,please do not reply to this message all correspondence
-      should be addressed to benefitsgloballtd.com or your relationship officer
+      should be addressed to sterileenergy.uk or your relationship officer
     </p>
   </div>
 </main>
@@ -247,12 +233,3 @@ module.exports = { create_mail_options2, transporter2 };
 // //   return { error: false, message: "message sent" };
 // // });
 // };
-
-
-
-
-
-
-
-
-

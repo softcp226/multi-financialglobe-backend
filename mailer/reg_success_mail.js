@@ -118,36 +118,36 @@
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 
-// let transporter = nodemailer.createTransport({
-//   service: "Gmail",
-//   secure: false,
+require("dotenv").config();
+let transporter = nodemailer.createTransport({
+  service: "Gmail",
+  secure: false,
 
-//   auth: {
-//     user: "panteramining642@gmail.com",
-//     // pass: "desolidboy1",
-//     pass: "cvqydopvaddyfnfi",
-//     // secure:false,
-//   },
-// });
+  auth: {
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
+  },
+});
 
-const transporter = nodemailer.createTransport(
-  smtpTransport({
-    host: "mail.benefitsgloballtd.com",
-    secureConnection: false,
-    tls: {
-      rejectUnauthorized: false,
-    },
-    port: 465,
-    auth: {
-      user: "support@benefitsgloballtd.com",
-      pass: "benefitsgloballtd1@1",
-    },
-  }),
-);
+
+// const transporter = nodemailer.createTransport(
+//   smtpTransport({
+//     host: "mail.benefitsgloballtd.com",
+//     secureConnection: false,
+//     tls: {
+//       rejectUnauthorized: false,
+//     },
+//     port: 465,
+//     auth: {
+//       user: "support@benefitsgloballtd.com",
+//       pass: "benefitsgloballtd1@1",
+//     },
+//   }),
+// );
 
 let create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@benefitsgloballtd.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever,
     subject: `Account Registration Notification`,
@@ -169,14 +169,14 @@ let create_mail_options = (userInfo) => {
   "
 >
   <div class="head-txt">
-    <h1 style="text-align: center; font-size: 16px; color:#26b6d4">
-     Benefits Global Limited
+    <h1 style="text-align: center; font-size: 16px; color:rgb(26, 115, 232)">
+     Sterile Energy
     </h1>
     <h3 style="font-size: 15px">NEW ACCOUNT NOTIFICATION</h3>
   </div>
 
   <p class="sm-p">
-    Dear ${userInfo.first_name} ${userInfo.last_name},, Thank you so much for
+    Dear ${userInfo.first_name} ${userInfo.last_name}, Thank you so much for
     allowing us to help you with your account opening. We are committed to
     providing our customers with the highest level of service and the most
     innovative investment and trading that are possible. We are very glad you
@@ -198,16 +198,16 @@ let create_mail_options = (userInfo) => {
     style="
       font-size: 18px;
       text-align: center;
-      background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
-      color: #26b6d4;
+      background:rgb(26, 115, 232);
+      color:#fff ;
     "
   >
-   Benefits Global Limited
+   Sterile Energy
   </h1>
   <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-    Disclaimer: this message was automatically generated via benefitsgloballtd
+    Disclaimer: this message was automatically generated via sterileenergy
     secured channel,please do not reply to this message all correspondence
-    should be addressed to benefitsgloballtd.com or your relationship officer
+    should be addressed to sterileenergy.uk or your relationship officer
   </p>
 </div>
 

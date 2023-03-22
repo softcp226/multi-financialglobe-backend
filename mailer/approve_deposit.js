@@ -44,7 +44,7 @@
 //     background-size: cover;
 //   "
 // >
-   
+
 //   <div class="maincontainer"     style="
 //     font-family: 'Nunito', sans-serif;
 //     font-family: 'Roboto', sans-serif;
@@ -58,7 +58,7 @@
 //     </div>
 
 //     <p class="sm-p">
-//       Dear ${userInfo.first_name} ${userInfo.last_name}, your deposit has been proccessed and approved 
+//       Dear ${userInfo.first_name} ${userInfo.last_name}, your deposit has been proccessed and approved
 //       on <b>${datetime}</b>.
 //     your fund has been deposited into your account with 50% first deposit bonus added
 //     </p>
@@ -102,50 +102,33 @@
 // // // });
 // // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const nodemailer = require("nodemailer");
-
+require("dotenv").config();
 const smtpTransport = require("nodemailer-smtp-transport");
 
-const transporter = nodemailer.createTransport(
-  smtpTransport({
-    host: "mail.benefitsgloballtd.com",
-    secureConnection: false,
-    tls: {
-      rejectUnauthorized: false,
-    },
-    port: 465,
-    auth: {
-      user: "support@benefitsgloballtd.com",
-      pass: "benefitsgloballtd1@1",
-    },
-  }),
-);
-// let transporter = nodemailer.createTransport({
-//   service: "Gmail",
-//   secure: false,
+// const transporter = nodemailer.createTransport(
+//   smtpTransport({
+//     host: process.env.mail_host,
+//     secureConnection: false,
+//     tls: {
+//       rejectUnauthorized: false,
+//     },
+//     port: 465,
+//     auth: {
+//       user: process.env.company_mail,
+//       pass: process.env.mail_password,
+//     },
+//   }),
+// );
+let transporter = nodemailer.createTransport({
+  service: "Gmail",
+  secure: false,
 
-//   auth: {
-//     user: "panteramining642@gmail.com",
-//     // pass: "desolidboy1",
-//     pass: "cvqydopvaddyfnfi",
-//     // secure:false,
-//   },
-// });
+  auth: {
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
+  },
+});
 
 let currentdate = new Date();
 let datetime = `${currentdate.getFullYear()}-${
@@ -154,7 +137,7 @@ let datetime = `${currentdate.getFullYear()}-${
 
 let create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@benefitsgloballtd.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever,
     subject: `Deposit Confirmation Notification`,
@@ -184,7 +167,7 @@ let create_mail_options = (userInfo) => {
   ">
     <div class="head-txt">
 
-      <h3 style="text-align: center; font-size: 16px; color: #825ee4">DEPOSIT CONFIRMATION NOTIFICATION</h3>
+      <h3 style="text-align: center; font-size: 16px; color: rgb(26, 115, 232)">DEPOSIT CONFIRMATION NOTIFICATION</h3>
     </div>
 
     <p class="sm-p">
@@ -199,11 +182,11 @@ let create_mail_options = (userInfo) => {
       reach out to you as soon as possible
     </p>
     <br />
-    <h1 style="  font-size: 17px; text-align: center;  background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%); color: #fff;" >Benefits Global Limited</h1>
+    <h1 style="  font-size: 17px; text-align: center;  background: linear-gradient(87deg, rgb(26, 115, 232) 0, rgb(26, 115, 232) 100%); color: #fff;" >Sterile Energy</h1>
    <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via benefitsgloballtd
+      Disclaimer: this message was automatically generated via sterileenergy.uk
       secured channel,please do not reply to this message all correspondence
-      should be addressed to benefitsgloballtd.com or your relationship officer
+      should be addressed to sterileenergy.uk or your relationship officer
     </p>
   </div>
 </main>
