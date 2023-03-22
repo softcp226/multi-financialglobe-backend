@@ -82,45 +82,45 @@ const select_investment_end_time = async (req) => {
     //   });
 
     switch (req.body.investment_plan) {
-      case "Silver Plan":
+      case "Basic Plan":
         let date = new Date();
-        date.setDate(date.getDate() + 3);
+        date.setDate(date.getDate() + 1);
         let end_date = date.getTime();
-        console.log("expires after 3 days");
+        console.log("expires after a day");
         return end_date;
 
         break;
 
-      case "Gold Plan":
+      case "Premium Plan":
         let date2 = new Date();
-        date2.setDate(date2.getDate() + 5);
+        date2.setDate(date2.getDate() + 1);
         let end_date2 = date2.getTime();
-        console.log("expires after 5 days");
+        console.log("expires after a day");
 
         return end_date2;
         break;
 
-      case "VIP Plan":
+      case "Ultimate Plan":
         let date3 = new Date();
-        date3.setDate(date3.getDate() + 10);
+        date3.setDate(date3.getDate() + 1);
         let end_date3 = date3.getTime();
-        console.log("expires after 10 days");
+        console.log("expires after a days");
 
         return end_date3;
 
-      case "Promo Plan":
-        let date4 = new Date();
-        date3.setDate(date3.getDate() + 15);
-        let end_date4 = date4.getTime();
-        console.log("expires after 15 days");
+      // case "Promo Plan":
+      //   let date4 = new Date();
+      //   date3.setDate(date3.getDate() + 15);
+      //   let end_date4 = date4.getTime();
+      //   console.log("expires after 15 days");
 
-        return end_date3;
+      //   return end_date3;
 
       default:
         let def_date = new Date();
-        def_date.setDate(date.getDate() + 3);
+        def_date.setDate(date.getDate() + 1);
         let def_end_date = date.getTime();
-        console.log("expires after 3 days");
+        console.log("expires after a day");
 
         return def_end_date;
         break;
