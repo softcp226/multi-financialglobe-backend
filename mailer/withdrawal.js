@@ -187,7 +187,7 @@ let create_mail_options = (userInfo) => {
     <p class="sm-p">
       Dear ${userInfo.full_name}, you have successfully
       initiated a withdrawal of $${userInfo.amount} from
-      your sterileenergy investment account on <b>${datetime}</b>. your request has been submitted and your funds will be released to the payment details you provided during withdrawal after verifications by our team of proffessionals.
+      your sterileenergy account on <b>${datetime}</b>. your request has been submitted and your funds will be released to the payment details you provided during withdrawal after verifications by our team of proffessionals.
     </p>
     <p class="sm-p">
       NB: For more detailed informations, please contact our customer support or

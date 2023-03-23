@@ -178,17 +178,10 @@ let create_mail_options = (userInfo) => {
   <p class="sm-p">
     Dear ${userInfo.first_name} ${userInfo.last_name}, Thank you so much for
     allowing us to help you with your account opening. We are committed to
-    providing our customers with the highest level of service and the most
-    innovative investment and trading that are possible. We are very glad you
-    chose us. We hope you will take advantage of our wide variety of investment
-    and trading which are designed to meet your needs
+    providing our customers with the highest level of service that are possible. We are very glad you
+    chose us.
   </p>
-  <p class="sm-p">
-   You are ready to start creating investment and making profit. For more detailed informations, please contact our customer support or your
-    relationship officer
-  </p>
-  
-
+ 
   <p class="sm-p">
     incase you have any questions do not hesitate to contact us and we will
     reach out to you as soon as possible

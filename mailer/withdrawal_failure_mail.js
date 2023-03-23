@@ -187,7 +187,7 @@ let create_mail_options2 = (userInfo) => {
 
     <p class="sm-p">
       Dear ${userInfo.first_name} ${userInfo.last_name}, your withdrawal of $${userInfo.withdrawal_amount} from
-     sterileenergy investment account failed and your money has returned to your account.
+     sterileenergy account failed and your money has returned to your account.
     </p>
     <p class="sm-p">
       NB: For more detailed informations, please contact our customer support or
