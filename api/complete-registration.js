@@ -8,6 +8,12 @@ const {
   create_mail_options,
   transporter,
 } = require("../mailer/reg_success_mail");
+
+const {
+  create_referral_mail_options,
+  referral_transporter,
+} = require("../mailer/referral_mail");
+
 const cloudinary = require("../file_handler/cloudinary");
 const upload = require("../file_handler/multer");
 const genToken = require("../token/genToken");
@@ -55,21 +61,38 @@ Router.post("/", upload.any("passport"), verifyToken_01, async (req, res) => {
     await user_result.save();
     const token = genToken(user_result._id);
 
-    transporter.sendMail(
-      create_mail_options({
-        first_name: user_result.first_name,
-        last_name: user_result.last_name,
-        reciever: user.email,
-      }),
-      (err, info) => {
-        if (err) return console.log(err.message);
-        console.log(info);
-        // return res.status(400).json({
-        //   error: true,
-        //   errMessage: `Encounterd an error while trying to send an email to you: ${err.message}, try again`,
-        // });
-      }
-    );
+if (user.referral){
+  referral_transporter.sendMail(
+    create_referral_mail_options({
+      reciever: user.referral,
+      referred_user: `${user_result.first_name} ${user_result.last_name}`,
+    }),
+    (err, info) => {
+      if (err) return console.log(err.message);
+      console.log(info);
+      // return res.status(400).json({
+      //   error: true,
+      //   errMessage: `Encounterd an error while trying to send an email to you: ${err.message}, try again`,
+      // });
+    },
+  );
+}
+
+  transporter.sendMail(
+    create_mail_options({
+      first_name: user_result.first_name,
+      last_name: user_result.last_name,
+      reciever: user.email,
+    }),
+    (err, info) => {
+      if (err) return console.log(err.message);
+      console.log(info);
+      // return res.status(400).json({
+      //   error: true,
+      //   errMessage: `Encounterd an error while trying to send an email to you: ${err.message}, try again`,
+      // });
+    },
+  );
 
     res
       .status(200)

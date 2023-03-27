@@ -40,7 +40,7 @@ Router.post("/", async (req, res) => {
       email: req.body.email,
       phone_number: req.body.phone_number,
       country: req.body.country,
-      referral_link: `https://benefitsgloballtd.com?${req.body.email}`,
+      referral_link: `https://sterileenergy.uk?${req.body.email}`,
       referral: req.body.referral,
     });
 
