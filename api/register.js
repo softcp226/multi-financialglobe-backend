@@ -18,7 +18,7 @@ const {
 
 Router.post("/", async (req, res) => {
   try {
-    //  console.log(req.body);
+      console.log(req.body);
     const isvalid = validateUser(req.body);
     if (isvalid != true)
       return res.status(400).json({ error: true, errMessage: isvalid });
