@@ -8,6 +8,7 @@ const verifyPassword = require("../hash/comparePassword");
 const hashpassword = require("../hash/hashPassword");
 
 Router.post("/", verifyToken, async (req, res) => {
+  console.log(req.body);
   const req_isvalid = validate_user_update(req.body);
   if (req_isvalid != true)
     return res.status(400).json({ error: true, errMessage: req_isvalid });
@@ -21,8 +22,8 @@ Router.post("/", verifyToken, async (req, res) => {
       });
     await user.set({
       // full_name: req.body.full_name,
-      first_name:req.body.first_name,
-      last_name:req.body.last_name,
+      full_name: req.body.full_name,
+      username: req.body.username,
       email: req.body.email,
     });
     await user.save();

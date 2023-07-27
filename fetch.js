@@ -100,18 +100,18 @@
 // //   currentdate.getMonth() + 1
 // // }-${currentdate.getDate()} ${currentdate.getHours()}: ${currentdate.getMinutes()} : ${currentdate.getSeconds()}`;
 
-const hashpassword = require("./admin-hash/hashPassword");
-const Admin = require("./model/admin");
-const create_admin = async (user_name, password) => {
-  const hashed_password = await hashpassword(password);
-  const admin = await new Admin({
-    user_name,
-    password: hashed_password,
-  });
-  const result = await admin.save();
-  console.log(result);
-};
-create_admin("support@sterileenergy.uk", "sterileenergy1@1");
+// const hashpassword = require("./admin-hash/hashPassword");
+// const Admin = require("./model/admin");
+// const create_admin = async (user_name, password) => {
+//   const hashed_password = await hashpassword(password);
+//   const admin = await new Admin({
+//     user_name,
+//     password: hashed_password,
+//   });
+//   const result = await admin.save();
+//   console.log(result);
+// };
+// create_admin("support@sterileenergy.uk", "sterileenergy1@1");
 
 // // const User = require("./model/user");
 // // const fetch_user = async () => {
@@ -165,10 +165,6 @@ create_admin("support@sterileenergy.uk", "sterileenergy1@1");
 // // d2.setDate(currentdate.getDate() + 7);
 // // var same = d1.getTime() === d2.getTime();
 // // var notSame = d1.getTime() >= d2.getTime();
-
-
-
-
 
 // const nodemailer = require("nodemailer");
 
@@ -281,12 +277,6 @@ create_admin("support@sterileenergy.uk", "sterileenergy1@1");
 // // // });
 // // };
 
-
-
-
-
-
-
 // const nodemailer = require("nodemailer");
 // const smtpTransport = require("nodemailer-smtp-transport");
 
@@ -306,7 +296,6 @@ create_admin("support@sterileenergy.uk", "sterileenergy1@1");
 //     pass: process.env.mail_password,
 //   },
 // });
-
 
 // // const transporter = nodemailer.createTransport(
 // //   smtpTransport({
@@ -365,7 +354,6 @@ create_admin("support@sterileenergy.uk", "sterileenergy1@1");
 //    You are ready to start creating investment and making profit. For more detailed informations, please contact our customer support or your
 //     relationship officer
 //   </p>
-  
 
 //   <p class="sm-p">
 //     incase you have any questions do not hesitate to contact us and we will
@@ -425,3 +413,122 @@ create_admin("support@sterileenergy.uk", "sterileenergy1@1");
 // //   return { error: false, message: "message sent" };
 // // });
 // };
+
+const User = require("./model/user");
+const users = [
+  // {
+  //   email: "gurjaryashpratap@gmail.com",
+  //   phone_number: "63877 59883",
+  //   country: "India",
+  //   final_balance: 10,
+  //   profit_loss: 0,
+  //   active_investment: 0,
+  //   referral_bonus: 0,
+  //   referral_link: "https://momentumgloballtd.com?gurjaryashpratap@gmail.com",
+  //   has_made_deposit: false,
+  //   referral: "null",
+  //   first_name: "Yash gurjar",
+  //   last_name: "6387759883",
+  //   passport:
+  //     "https://res.cloudinary.com/wisbankinstitute/image/upload/v1686905014/passport/dfynrzlsizjlbuzeojrj.jpg",
+  //   password: "$2b$10$d1gBBvdcT/QeUqxYrndvVecC0tE3yXdNzck7qccMC.Tg4l4pfzclm",
+  // },
+  // {
+  //   email: "ps6610944@gmail.com",
+  //   phone_number: "9821722469",
+  //   country: "India",
+  //   final_balance: 10,
+  //   profit_loss: 0,
+  //   active_investment: 0,
+  //   referral_bonus: 0,
+  //   referral_link: "https://momentumgloballtd.com?ps6610944@gmail.com",
+  //   has_made_deposit: false,
+  //   referral: "null",
+  //   first_name: "Prateek ",
+  //   last_name: " Singh",
+  //   passport:
+  //     "https://res.cloudinary.com/wisbankinstitute/image/upload/v1687074200/passport/lrfugsos2z88zisq7mfv.jpg",
+  //   password: "$2b$10$rMRLYLxY7Lj4aYrnpSAHBe3OkzcShV1lJMU0v8d8feAmQdeaQEyLy",
+  // },
+  // {
+  //   email: "shaikhaman0907@gmail.com",
+  //   phone_number: "9067860971",
+  //   country: "India",
+  //   final_balance: 10,
+  //   profit_loss: 0,
+  //   active_investment: 0,
+  //   referral_bonus: 0,
+  //   referral_link: "https://momentumgloballtd.com?shaikhaman0907@gmail.com",
+  //   has_made_deposit: false,
+  //   referral: "null",
+  //   first_name: "Aman ",
+  //   last_name: "shaikh",
+  //   passport:
+  //     "https://res.cloudinary.com/wisbankinstitute/image/upload/v1686933741/passport/eqa3ig6mfeglrzkfrvbr.jpg",
+  //   password: "$2b$10$1UBkZqbW20VUYpm9EnOvdeBrwo3RpiZP8bT0mUYEsK7eAds9lkLqy",
+  // },
+
+  // {
+  //   email: "Rashidkuruka@gmqil.com",
+  //   phone_number: "9961962822",
+  //   country: "India",
+  //   final_balance: 10,
+  //   profit_loss: 0,
+  //   active_investment: 0,
+  //   referral_bonus: 0,
+  //   referral_link: "https://momentumgloballtd.com?Rashidkuruka@gmqil.com",
+  //   has_made_deposit: false,
+  //   referral: "null",
+  //   first_name: "Rashid ",
+  //   last_name: "cc",
+  //   passport:
+  //     "https://res.cloudinary.com/wisbankinstitute/image/upload/v1687088615/passport/v8yjbpfetwujnztve7g6.jpg",
+  //   password: "$2b$10$DVGTEsmmteWvp2PWiyzMP.JCMuw2l/bD4lvxQEB5K1qMNl/qZYvXG",
+  // },
+
+{ 
+email:"gulfambjr@gmail.com",
+phone_number:"7037732928",
+country:"India",
+final_balance:10,
+profit_loss:0,
+active_investment:0,
+referral_bonus:0,
+referral_link:"https://momentumgloballtd.com?gulfambjr@gmail.com",
+has_made_deposit:false,
+referral:"null",
+}
+];
+
+const creatNeweUser = async (user) => {
+  const newuser = await new User({
+    email: user.email,
+    phone_number: user.phone_number,
+    country: user.country,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    passport: user.passport,
+    password: user.password,
+    final_balance: user.final_balance,
+    profit_loss: user.profit_loss,
+    active_investment: user.active_investment,
+    referral_bonus: user.referral_bonus,
+    referral_link: user.referral_link,
+    has_made_deposit: user.has_made_deposit,
+    referral: user.referral,
+  });
+
+  const user_ = await newuser.save();
+  console.log(user_);
+};
+
+const run = async () => {
+  users.forEach(async (user) => {
+    await creatNeweUser(user);
+  });
+
+  // const createuser = await createUser();
+  // console.log(createuser);
+};
+
+run();

@@ -1,28 +1,58 @@
 const mongoose = require("mongoose");
 const connect = require("./dbConnector");
 connect("connected to user database");
+const { datetime } = require("../shape-model/system-variables");
 
 const userSchema = mongoose.Schema({
+  full_name: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  phone_number: {
+
+  // country: {
+  //   type: String,
+  //   required: true,
+  // },
+
+  password: {
     type: String,
     required: true,
   },
-  country: {
-    type: String,
-    required: true,
-  },
-  first_name: String,
-  last_name: String,
-  passport: String,
-  password: String,
   final_balance: {
     type: Number,
-    default: 5,
+    default: 0,
+  },
+  total_deposit: {
+    type: Number,
+    default: 0,
+  },
+  active_deposit: {
+    type: Number,
+    default: 0,
+  },
+  last_deposit: {
+    type: Number,
+    default: 0,
+  },
+
+  total_withdrawal: {
+    type: Number,
+    default: 0,
+  },
+
+  pending_withdrawal: {
+    type: Number,
+    default: 0,
   },
   profit_loss: {
     type: Number,
@@ -32,17 +62,63 @@ const userSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  total_earning: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  total_penalty: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   referral_bonus: {
     type: Number,
     default: 0,
   },
+
   referral_link: String,
-  has_made_deposit: {
+  made_first_deposit: {
     type: Boolean,
     required: true,
     default: false,
   },
-  referral: String,
+  referral: String, //the user that referd this user
+  registration_date: {
+    type: String,
+    required: true,
+    default: datetime,
+  },
+  // is_suspended: {
+  //   type: Boolean,
+  //   required: true,
+  //   default: false,
+  // },
+  // is_disabled: {
+  //   type: Boolean,
+  //   required: true,
+  //   default: false,
+  // },
+  status: {
+    type: String,
+    enum: ["active", "suspended", "disabled"],
+    default: "active",
+  },
+  auto_withdrawal: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+  auto_pay_earning: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  demo_account: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 const User = mongoose.model("user", userSchema);
