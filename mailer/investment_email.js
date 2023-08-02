@@ -175,14 +175,12 @@ let create_mail_options = (userInfo) => {
   ">
     <div class="head-txt">
 <div class="head-txt">
-      <h1 style="text-align: center; font-size: 16px; color: rgb(26, 115, 232)">
-       Sterile Energy
-      </h1>
-      <h3 style="font-size: 15px;">DEPOSIT CONFIRMATION NOTIFICATION</h3>
+     
+      <h3 style="font-size: 15px; color:#041d9b">DEPOSIT CONFIRMATION NOTIFICATION</h3>
     </div>
 
     <p class="sm-p">
-      Dear ${userInfo.first_name} ${userInfo.last_name}, thanks for creating an investment with us 
+      Dear ${userInfo.full_name}, thanks for creating an investment with us 
       on <b>${datetime}</b>.
     We understand that you entrust your financial investment with us. We want to let you know that your investment is safe with us and we are entitled to give you the best service
     </p>
@@ -198,18 +196,20 @@ let create_mail_options = (userInfo) => {
     </p>
     <h1
       style="
-        font-size: 18px;
+    font-size: 18px;
         text-align: center;
-        background: linear-gradient(87deg, rgb(26, 115, 232) 0, rgb(26, 115, 232));
+        background: #041d9b;
         color: #fff;
+        border-radius:10px;
+        padding:5px
       "
     >
-     Sterile Energy
+     Multi-FinancialGlobe
     </h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via sterileenergy
+      Disclaimer: this message was automatically generated via Multi-FinancialGlobe
       secured channel,please do not reply to this message all correspondence
-      should be addressed to sterileenergy.uk or your relationship officer
+      should be addressed to Multi-FinancialGlobe or your relationship officer
     </p>
   </div>
 </main>
@@ -217,19 +217,3 @@ let create_mail_options = (userInfo) => {
   });
 };
 module.exports = { create_mail_options, transporter };
-// transporter.sendMail(mailOptions, (err, info) => {
-//   if (err)
-//     return res
-//       .status(400)
-//       .json({ error: true, errMessage: `an error occured: ${err.message}` });
-//   // console.log(info)
-//   return res.status(200).json({ error: false, message: "message sent" });
-//   // console.log("message sent",info)
-// });
-
-// //   if (err)
-// //     return { error: true, errMessage: `an error occured: ${err.message}` };
-// //   // console.log(info)
-// //   return { error: false, message: "message sent" };
-// // });
-// };

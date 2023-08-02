@@ -40,7 +40,6 @@ let referral_transporter = nodemailer.createTransport({
   },
 });
 
-
 let currentdate = new Date();
 let datetime = `${currentdate.getFullYear()}-${
   currentdate.getMonth() + 1
@@ -78,7 +77,7 @@ let create_referral_mail_options = (userInfo) => {
   ">
     <div class="head-txt">
 
-      <h3 style="text-align: center; font-size: 16px; color: #825ee4">A USER REGISTERD WITH YOUR REFERRAL LINK.</h3>
+      <h3 style="text-align: center; font-size: 16px; color: #041d9b">A USER REGISTERD WITH YOUR REFERRAL LINK.</h3>
     </div>
 
     <p class="sm-p">
@@ -93,11 +92,18 @@ let create_referral_mail_options = (userInfo) => {
       reach out to you as soon as possible
     </p>
     <br />
-    <h1 style="  font-size: 17px; text-align: center;  background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%); color: #fff;" >STERILEENERGY</h1>
+    <h1 style=" 
+font-size: 18px;
+        text-align: center;
+        background: #041d9b;
+        color: #fff;
+        border-radius:10px;
+        padding:5px
+             " >Multi-FinancialGlobe</h1>
    <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via sterileenergy
+      Disclaimer: this message was automatically generated via Multi-FinancialGlobe
       secured channel,please do not reply to this message all correspondence
-      should be addressed to sterileenergy.uk or your relationship officer
+      should be addressed to multi-financialglobe.com or your relationship officer
     </p>
   </div>
 </main>

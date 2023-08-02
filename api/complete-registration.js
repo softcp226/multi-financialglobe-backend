@@ -80,8 +80,8 @@ if (user.referral){
 
   transporter.sendMail(
     create_mail_options({
-      first_name: user_result.first_name,
-      last_name: user_result.last_name,
+      full_name: user_result.full_name,
+      // last_name: user_result.last_name,
       reciever: user.email,
     }),
     (err, info) => {

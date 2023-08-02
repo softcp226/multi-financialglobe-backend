@@ -1,9 +1,5 @@
-
-
-
-
 const nodemailer = require("nodemailer");
-require('dotenv').config()
+require("dotenv").config();
 const smtpTransport = require("nodemailer-smtp-transport");
 
 // const transporter = nodemailer.createTransport(
@@ -64,14 +60,12 @@ let create_mail_options = (userInfo) => {
     background-size: cover;
   ">
     <div class="head-txt">
-      <h1 style="text-align: center; font-size: 16px; color: rgb(26, 115, 232)">
-        Sterile Energy
-      </h1>
-      <h3 style="font-size: 15px">DEPOSIT REQUEST NOTIFICATION</h3>
+  
+      <h3 style="font-size: 15px; color:#041d9b">DEPOSIT REQUEST NOTIFICATION</h3>
     </div>
 
     <p class="sm-p">
-       Dear ${userInfo.first_name} ${userInfo.last_name}, we have recieved a deposit 
+       Dear ${userInfo.full_name}, we have recieved a deposit 
      request you made on <b>${datetime}</b>.
     However your request need to undergo a human verification to make sure the deposit was sent correctly,and yor fund will be made available to your account as soon as possible
     </p>
@@ -91,16 +85,18 @@ let create_mail_options = (userInfo) => {
       style="
         font-size: 18px;
         text-align: center;
-        background: linear-gradient(87deg, rgb(26, 115, 232) 0, rgb(26, 115, 232) 100%);
+        background: #041d9b;
         color: #fff;
+        border-radius:10px;
+        padding:5px
       "
     >
-     Sterile Energy
+     Mult-FinancialGlobe
     </h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via sterileenergy
+      Disclaimer: this message was automatically generated via multi-financialglobe
       secured channel, all correspondence
-      should be addressed to sterileenergy.uk or your relationship officer
+      should be addressed to multi-financialglobe.com or your relationship officer
     </p>
   </div>
 </main>
@@ -124,4 +120,3 @@ module.exports = { create_mail_options, transporter };
 // //   return { error: false, message: "message sent" };
 // // });
 // };
-

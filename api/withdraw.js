@@ -55,8 +55,8 @@ Router.post("/", verifyToken, async (req, res) => {
     await withdrawal_request.save();
     transporter.sendMail(
       create_mail_options({
-        first_name: user.first_name,
-        last_name: user.last_name,
+        full_name: user.full_name,
+        // last_name: user.last_name,
         reciever: user.email,
         amount: req.body.withdrawal_amount,
       }),

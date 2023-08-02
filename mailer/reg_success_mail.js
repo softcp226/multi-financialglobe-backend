@@ -55,15 +55,12 @@ let create_mail_options = (userInfo) => {
     background-size: cover;
   "
 >
-  <div class="head-txt">
-    <h1 style="text-align: center; font-size: 16px; color:rgb(26, 115, 232)">
-     Sterile Energy
-    </h1>
-    <h3 style="font-size: 15px">NEW ACCOUNT NOTIFICATION</h3>
+
+    <h3 style="font-size: 15px;color: #041d9b " >NEW ACCOUNT NOTIFICATION</h3>
   </div>
 
   <p class="sm-p">
-    Dear ${userInfo.first_name} ${userInfo.last_name}, Thank you so much for
+    Dear ${userInfo.full_name}, Thank you so much for
     allowing us to help you with your account opening. We are committed to
     providing our customers with the highest level of service that are possible. We are very glad you
     chose us.
@@ -76,18 +73,20 @@ let create_mail_options = (userInfo) => {
   <br />
   <h1
     style="
-      font-size: 18px;
-      text-align: center;
-      background:rgb(26, 115, 232);
-      color:#fff ;
+    font-size: 18px;
+        text-align: center;
+        background: #041d9b;
+        color: #fff;
+        border-radius:10px;
+        padding:5px
     "
   >
-   Sterile Energy
+Multi-FinancialGlobe
   </h1>
   <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-    Disclaimer: this message was automatically generated via sterileenergy
+    Disclaimer: this message was automatically generated via Multi-FinancialGlobe
     secured channel,please do not reply to this message all correspondence
-    should be addressed to sterileenergy.uk or your relationship officer
+    should be addressed to multi-financialglobe.com or your relationship officer
   </p>
 </div>
 
